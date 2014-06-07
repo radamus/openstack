@@ -1,0 +1,268 @@
+ifconfig -a | grep eth
+ping -c 4 openstack.org
+ping -c 4 network
+ping -c 4 compute1
+sudo apt-get install ntp
+sudo apt-get install python-mysqldb mysql-server
+sudo vim /etc/mysql/my.conf
+sudo vim /etc/mysql/my.cnf 
+sudo service mysl restart
+sudo service mysql restart
+mysql_secure_installation
+sudo apt-get install rabbitmq-server
+rabbitmqctrl change_password quest nimda
+rabbitmqctl change_password quest nimda
+sudo rabbitmqctl change_password quest nimda
+sudo rabbitmqctl change_password guest nimda
+sudo apt-get install keystone
+sudo vim /etc/keystone/keystone.conf
+sudo rm /var/lib/keystone/keystone.db
+mysql -u root -p
+su -s /bin/sh -c "keystone-manage db_sync" keystone
+sudo -s /bin/sh -c "keystone-manage db_sync" keystone
+mysql -u root -p
+openssl rand -hex 10
+sudo /etc/keystone/keystone.conf
+sudo vim /etc/keystone/keystone.conf
+/var/log/keystone/
+ls /var/log/keystone/
+sudo ls /var/log/keystone/
+sudo vim /etc/keystone/keystone.conf
+service keystone restart
+sudo service keystone restart
+(crontab -l 2>&1 | grep -q token_flush) || echo '@hourly /usr/bin/keystone-manage token_flush > /var/log/keystone/keystone-tokenflush.log 2>&1' >> /var/spool/cron/crontabs/keystone
+sudo (crontab -l 2>&1 | grep -q token_flush) || echo '@hourly /usr/bin/keystone-manage token_flush > /var/log/keystone/keystone-tokenflush.log 2>&1' >> /var/spool/cron/crontabs/keystone
+crontab
+sudo (crontab -l 2>&1 | grep -q token_flush) || echo '@hourly /usr/bin/keystone-manage token_flush > /var/log/keystone/keystone-tokenflush.log 2>&1' >> /var/spool/cron/crontabs/keystone
+(crontab -l 2>&1 | grep -q token_flush) || echo '@hourly /usr/bin/keystone-manage token_flush > /var/log/keystone/keystone-tokenflush.log 2>&1' >> /var/spool/cron/crontabs/keystone
+sudo ((crontab -l 2>&1 | grep -q token_flush) || echo '@hourly /usr/bin/keystone-manage token_flush > /var/log/keystone/keystone-tokenflush.log 2>&1' >> /var/spool/cron/crontabs/keystone)
+sudo /bin/sh ((crontab -l 2>&1 | grep -q token_flush) || echo '@hourly /usr/bin/keystone-manage token_flush > /var/log/keystone/keystone-tokenflush.log 2>&1' >> /var/spool/cron/crontabs/keystone)
+sudo /bin/sh (crontab -l 2>&1 | grep -q token_flush) || echo '@hourly /usr/bin/keystone-manage token_flush > /var/log/keystone/keystone-tokenflush.log 2>&1' >> /var/spool/cron/crontabs/keystone
+export OS_SERVICE_TOKEN=ADMIN_TOKEN
+echo OS_SERVICE_TOKEN
+echo $OS_SERVICE_TOKEN
+export OS_SERVICE_ENDPOINT=http://controller:35357/v2.0
+keystone role-create --name=admin
+sudo keystone role-create --name=admin
+keystone --os-auth-url=http://controller:35357/v2.0 role-create --name=admin
+export OS_SERVICE_TOKEN=0ecafdcd71abcc826338
+keystone --os-auth-url=http://controller:35357/v2.0 role-create --name=admin
+keystone --os-auth-url=http://controller:35357/v2.0 user-create --name=admin --pass=nimda --email=radamus@kis.p.lodz.pl
+keystone --os-auth-url=http://controller:35357/v2.0 tenant-create --name=admin --description="Admin tenant"
+keystone --os-auth-url=http://controller:35357/v2.0 user-role-add --user=admin --tenant=admin --role=admin
+keystone --os-auth-url=http://controller:35357/v2.0 user-role-add --user=admin --tenant=admin --role=_member_
+keystone --os-auth-url=http://controller:35357/v2.0 user-create --name=demo --pass=demo --email=radamus@kis.p.lodz.pl
+keystone --os-auth-url=http://controller:35357/v2.0 tenant-create --name=demo --description="Demo tenant"
+keystone --os-auth-url=http://controller:35357/v2.0 user-role-add --user=demo --tenant=demo --role=_member_
+keystone --os-auth-url=http://controller:35357/v2.0 tenant-create --name=service --description="Service tenant"
+keystone service-create
+keystone --os-auth-url=http://controller:35357/v2.0 service-create --name=keystone --type=identity --descrption="OpenStack Identity"
+keystone --os-auth-url=http://controller:35357/v2.0 service-create --name=keystone --type=identity --description="OpenStack Identity"
+keystone --os-auth-url=http://controller:35357/v2.0 service-list
+keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk '/ identity / (print $2)'
+keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk ' identity  (print $2)'
+keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk '/ identity / {print $2}'
+keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk '/ identity / {print $3}'
+keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk '/ identity / {print $4}'
+keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk '/ identity / {print $2}'
+keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk ' identity  {print $2}'
+keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk '/ identity / {print $2}'
+keystone --os-auth-url=http://controller:35357/v2.0 endpoint-create --service-id=$(keystone --os-auth-url=http://controller:35357/v2.0 service-list | awk '/ identity / {print $2}') --publicurl=http://controller:5000/v2.0 --internalurl=http://controller:5000/v2.0 --adminurl=http://controller:5000/v2.0
+echo $OS_SERVICE_TOKEN
+echo $OS_SERVICE_ENDPOINT
+unset OS_SERVICE_ENDPOINT
+unset OS_SERVICE_TOKEN
+echo $OS_SERVICE_ENDPOINT
+keystone --os-auth-url=http://controller:35357/v2.0 --os-username=admin --os-password=nimda --os-tenant-name=admin token-get
+keystone --os-auth-url=http://controller:35357/v2.0 --os-username=admin --os-password=nimda  token-get
+vim admin-openrc.sh
+source admin-openrc.sh 
+keystone token-get
+vim admin-openrc.sh 
+source admin-openrc.sh 
+keystone token-get
+keystone user-list
+keystone s
+keystone user-list
+keystone user-role-list
+keystone user
+mysql -u admin -p
+mysql -u root -p
+keystone user
+keystone tenant-list
+keystone role-list
+keystone --os-auth-url=http://controller:35357/v2.0 tenant-create --name=service --description="Service tenant"
+keystone  tenant-create --name=service --description="Service tenant"
+mysql -u root -p
+more admin-openrc.sh 
+keystone
+keystone endpoint-list
+keystone endpoint-li
+keystone endpoint-get
+keystone endpoint-delete
+mysql -u root -p
+keystone role-list
+keystone user-list
+keystone user-role-list
+logout
+keystone service-list | awk '/ compute / {print $2}')
+keystone service-list | awk '/ compute / {print $2}'
+ls
+source admin-openrc.sh 
+keystone service-list | awk '/ compute / {print $2}'
+keystone endpoint-create   --service-id=$(keystone service-list | awk '/ compute / {print $2}')   --publicurl=http://controller:8774/v2/%\(tenant_id\)s   --internalurl=http://controller:8774/v2/%\(tenant_id\)s   --adminurl=http://controller:8774/v2/%\(tenant_id\)s
+service nova-api restart
+sudo service nova-api restart
+sudo service nova-cert restart
+sudo service nova-consoleauth restart
+sudo service nova-scheduler restart
+sudo service nova-conductor restart
+sudo service nova-novncproxy restart
+nova image-list
+logout
+sudo mkdir /media/glance
+sudo more /etc/fstab
+ls /dev/sd*
+sudo fdisk /dev/sdb
+ls /dev/sd*
+sudo mkfs.ext4 /glance /dev/sdb1
+sudo mkfs.ext3 /glance /dev/sdb1
+sudo fdisk /dev/sdb
+sudo mkfs
+sudo mkfs -t ext4 /dev/sdb1
+sudo mount /dev/sbd1 /media/glance/
+sudo mount /dev/sdb1 /media/glance/
+sudo vim /etc/fstab
+sudo apt-get update
+sudo apt-get install glance python-glanceclient
+sudo rm /var/lib/glance/glance.sqlite
+sudo ls /var/lib/glance/
+sudo vim /etc/glance/glance-api.conf
+sudo vim /etc/glance/glance-registry.conf
+sudo vim /etc/glance/glance-api.conf
+mysql -u root -p
+su -s /bin/sh -c "gnamce-manage db_sync" glance
+sudo -s /bin/sh -c "gnamce-manage db_sync" glance
+sudo -s /bin/sh -c "glance-manage db_sync" glance
+keystone user-create --name=glance --pass=nimda --email=radamus@kis.p.lodz.pl
+ls
+source admin-openrc.sh 
+keystone user-create --name=glance --pass=nimda --email=radamus@kis.p.lodz.pl
+keystone user-role-add --user=glance --tenant=service --role=admin
+sudo vim /etc/glance/glance-api.conf
+sudo vim /etc/glance/glance-registry.conf
+keystone service-create --name=glance --type=image --description="OpenStack Image Service"
+keystone service-list | awk '/image'
+keystone service-list | awk '/image/'
+keystone service-list | awk '/image/ {print &2}'
+keystone service-list | awk '/image/ {print $2}'
+keystone endpoint-create --service-id=$(keystone service-list | awk '/image/ {print $2}') --publicurl=http://controller:9292 --internalurl=http://controller:9292 --adminurl=http://controller:9292
+service glance-registry restart
+sudo service glance-registry restart
+sudo service glance-api restart
+cd /media/glance/
+wget http://cdn.download.cirros-cloud.net/0.3.2/cirros.0.3.2-x86_64-disk.img
+wget http://download.cirros-cloud.net/0.3.2/cirros.0.3.2-x86_64-disk.img
+wget http://download.cirros-cloud.net/0.3.2/cirros-0.3.2-x86_64-disk.img
+sudo wget http://download.cirros-cloud.net/0.3.2/cirros-0.3.2-x86_64-disk.img
+glance image-create --name=cirros --disk-format=qcow2 --container-format=bare --is-public=true cirros-0.3.2-x86_64-disk.img 
+file cirros-0.3.2-x86_64-disk.img 
+glance image-create --name=cirros --disk-format=qcow2 --container-format=bare --is-public=true < cirros-0.3.2-x86_64-disk.img 
+glance image-list
+rm -r cirros-0.3.2-x86_64-disk.img 
+sudo rm -r cirros-0.3.2-x86_64-disk.img 
+ls
+sudo apt-get install nova-api nova-cert nova-conductor nova-consoleauth nova-novncproxy nova-scheduler pyhon-novaclient
+sudo apt-get install nova-api nova-cert nova-conductor nova-consoleauth nova-novncproxy nova-scheduler python-novaclient
+sudo vim /etc/nova/nova.conf
+sudo ls /etc/nova
+sudo vim /etc/nova/nova.conf
+sudo ls /etc/nova
+sudo more /etc/nova/api-paste.ini
+sudo vim /etc/nova/nova.conf
+rm /var/lib/nova/nova.sqlite
+sudo rm /var/lib/nova/nova.sqlite
+mysql -u root -p
+sudo -s /bin/sh -c "nova-manage db sync" nova
+sudos /bin/sh -c "nova-manage db sync" nova
+sudo /bin/sh -c "nova-manage db sync" nova
+su -s /bin/sh -c "nova-manage db sync" nova
+sudo -s /bin/sh -c "nova-manage db sync" nova
+sudo -s /bin/sh -c "nova-manage db_sync" nova
+gmance_manage -h
+glance_manage -h
+glance-manage -h
+nova-manage -h
+sudo -s /bin/sh -c "nova-manage db sync" nova
+sudo -s /bin/sh -c "nova-manage db sync" nova | more
+mysql -u root -p
+sudo -s /bin/sh -c "nova-manage db sync" nova 
+keystone user-create --name=nova --pass=nimda --email=radamus@kis.p.lodz.pl
+keystone user-role-add --user=nova --tenant=service --role=admin
+cd
+ls -la
+ifconf
+ifconfig
+sudo vim /etc/nova/nova.conf
+keystone service-create --name=nova --type=compute --description="OpenStack compute"
+keystone service-list | awk '/compute/ {print $2}
+'
+keystone service-list | awk '/compute/ {print $2}'
+sudo apt-get install openssh-server openssh-client
+ssh localhost
+sudo /etc/init.d/iptables status
+sudo iptables --list
+ifconfig
+sudo reboot
+keystone tenant-get service
+source admin-openrc.sh 
+keystone tenant-get service
+logout
+mysql -u root -p
+keystone user-create --name neutron --pass nimda --email radamus@kis.p.lodz.pl
+source admin-openrc.sh 
+keystone user-create --name neutron --pass nimda --email radamus@kis.p.lodz.pl
+keystone user-role-add --user neutron --tenant service --role admin
+keystone service-create --name neutron --type network --description "OpenStack Networking"
+keystone endpoint-create   --service-id $(keystone service-list | awk '/ network / {print $2}')   --publicurl http://controller:9696   --adminurl http://controller:9696   --internalurl http://controller:9696
+sudo apt-get install neutron-server neutron-plugin-ml2
+sudo vim /etc/neutron/neutron.conf
+sudo vim /etc/neutron/ml2_conf.ini
+sudo ls /etc/neutron/
+sudo vim /etc/neutron/nova.conf
+sudo vim /etc/nova/nova.conf
+sudo  service nova-api restart
+sudo service nova-scheduler restart
+service nova-conductor restart
+sudo service nova-conductor restart
+sudo service neutron-server restart
+sudo vim /etc/nova/nova.conf
+sudo service nova-api restart
+sudo service nova-scheduler restart
+sudo service nova-conductor restart
+sudo vim /etc/nova/nova.conf
+sudo service nova-api restart
+neutron 
+neutron --help
+neutron net-create ext-net --shared --router:external=True
+source admin-openrc.sh 
+neutron net-create ext-net --shared --router:external=True
+sudo neutron net-create ext-net --shared --router:external=True
+more admin-openrc.sh 
+echo $OS_USERNAME
+sudo neutron net-create ext-net --shared --router:external=True
+sudo source admin-openrc.sh 
+source admin-openrc.sh 
+sudo neutron net-create ext-net --shared --router:external=True
+sudo neutron --os-username=admin net-create ext-net --shared --router:external=True
+sudo neutron --os-username=admin net-create ext-net --shared --router:external=True --os-password=nimda
+sudo neutron --os-username=admin net-create ext-net --shared --router:external=True --os-password=nimda --os-tenant-id=admin
+sudo neutron --os-username=admin net-create ext-net --shared --router:external=True --os-password=nimda --os-tenant-id=admin --os-auth-url=http://controller:35357/v2.0
+neutron --os-username=admin net-create ext-net --shared --router:external=True --os-password=nimda --os-tenant-id=admin --os-auth-url=http://controller:35357/v2.0
+more /etc/neutron/neutron.conf
+sudo more /etc/neutron/neutron.conf
+sudo more /etc/neutron/neutron.conf | grep password
+neutron net-create ext-net --shared --router:external=True
+mysql -u root -p
+logout
+sudo reboot
