@@ -1,0 +1,32 @@
+sudo more /etc/network/interfaces
+sudo apt-get update
+sudo apt-get install nova-compute-kvm python-guestfs
+sudo dpkg-statoverride  --update --add root root 0644 /boot/vmlinuz-$(uname -r)
+sudo vim /etc/kernel/postinst.d/statoverride
+sudo chmod +x /etc/kernel/postinst.d/statoverride
+sudo vim /etc/nova/nova.conf
+sudo egrep -c 'vmx|svm) /proc/cpuinfo
+sudo egrep -c '(vmx|svm)' /proc/cpuinfo
+sudo vim /etc/nova/nova-compute.conf
+sudo rm /var/lib/nova/nova.sqlite
+sudo service nova-compute restart
+sudo service --status-all
+sudo apt-get install nova-compute-kvm python-guestfs
+sudo apt-get install nova-compute-qemu
+sudo service --status-all
+sudo service nova-compute restart
+logout
+ping -c 4 controller
+ping -c 4 10.0.1.21
+sudo apt-get install ntp
+sudo vim /etc/ntp.conf 
+openssl rand -hex 10
+sudo apt-get install python-mysqldb
+openssl rand -hex 10
+ifconfig
+sudo apt-get ssh-server ssh-client
+sudo apt-get openssh-server openssh-client
+sudo apt-get install openssh-server openssh-client
+sudo apt-get update
+restart
+sudo reboot
