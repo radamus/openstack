@@ -1,0 +1,40 @@
+sudo apt-get update
+ifconfig -a | grep eth
+route -n
+ifconfig -a | grep eth
+route -n
+ping -c 4 openstack.org
+
+ping -c 4 controller
+ping -c 4 10.0.1.31
+sudo apt-get install ntp
+more /etc/ntp.conf 
+sudo vim /etc/ntp.conf 
+sudo apt-get install python-mysqldb
+more /etc/hosts
+more /etc/network/interfaces
+sudo apt-get update
+sudo apt-get install openssh-server openssh-client
+ifconfig
+sudo service openvswitch-switch restart
+vs-vsctl add-br br-int
+sudo vs-vsctl add-br br-int
+sudo ovs-vsctl add-br br-int
+sudo ovs-vsctl add-br br-ex
+ifconfig
+more /etc/ifconfig
+ls /etc
+service neutron-plugin-openvswitch-agent restart
+sudo service neutron-plugin-openvswitch-agent restart
+sudo service neutron-l3-agent restart
+sudo service neutron-dhcp-agent restart
+sudo service neutron-metadata-agent restart
+sudo vim /etc/sysctl.conf 
+sudo sysctl -p
+apt-get install neutron-plugin-ml2 neutron-plugin-openvswitch-agent openvswitch-datapath-dkms   neutron-l3-agent neutron-dhcp-agent
+sudo apt-get install neutron-plugin-ml2 neutron-plugin-openvswitch-agent openvswitch-datapath-dkms   neutron-l3-agent neutron-dhcp-agent
+sudo vim /etc/neutron/neutron.conf
+sudo vim /etc/neutron/l3_agent.ini
+sudo vim /etc/neutron/dhcp_agent.ini
+sudo vim  /etc/neutron/metadata_agent.ini
+sudo vim /etc/neutron/plugins/ml2/ml2_conf.ini
